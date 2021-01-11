@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <div class="title">{{title}}</div>
+      <div class="title"><strong>{{title}}</strong></div>
     </header>
 
     <section class="main-content w-50 mx-auto">
@@ -26,7 +26,7 @@ export default {
   },
   data: function() {
     return {
-      title: 'My App Title',
+      title: 'Faircorp - A building management system',
       id: 'Windows'
     }
   },

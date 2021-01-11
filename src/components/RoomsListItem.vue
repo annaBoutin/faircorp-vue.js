@@ -2,9 +2,9 @@
   <div class="room border border-secondary rounded p-2 mb-2" :class="{expanded: isExpanded}">
     <div class="top-row d-flex" @click="toggleExpand">
       <div class="room-name fw-bold pe-3">{{room.name}}</div>
-      <div class="room-floor text-muted">Floor : {{room.floor}}</div>
-      <div class="room-currentTemp text-muted">{{room.currentTemp}}</div>
-      <div class="room-targetTemp text-muted">{{room.targetTemp}}</div>
+      <div class="room-floor text-muted pe-3">Floor : {{room.floor}}</div>
+      <div class="room-currentTemp text-muted pe-3" v-if="room.currentTemp !== null">Current temperature : {{room.currentTemp}}</div>
+      <div class="room-targetTemp text-muted" v-if="room.targetTemp !== null">Target Temperature : {{room.targetTemp}}</div>
 
       <div class="expand-button ms-auto">
         {{ isExpanded ? '&#9660;' : '&#9658;' }}
