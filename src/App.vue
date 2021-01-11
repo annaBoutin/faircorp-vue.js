@@ -6,7 +6,8 @@
 
     <section class="main-content w-50 mx-auto">
       <main-navigation></main-navigation>
-      <windows-list></windows-list>
+      <windows-list v-if="!isRoom"></windows-list>
+      <rooms-list v-if="isRoom"></rooms-list>
     </section>
   </div>
 </template>
@@ -14,16 +15,19 @@
 <script>
 import MainNavigation from './components/MainNavigation.vue';
 import WindowsList from './components/WindowsList.vue';
+import RoomsList from './components/RoomsList.vue';
 
 export default {
   name: 'App',
   components: {
     MainNavigation,
-    WindowsList
+    WindowsList,
+    RoomsList
   },
   data: function() {
     return {
-      title: 'My App Title'
+      title: 'My App Title',
+      isRoom: false
     }
   }
 }
