@@ -5,9 +5,9 @@
     </header>
 
     <section class="main-content w-50 mx-auto">
-      <main-navigation></main-navigation>
-      <windows-list v-if="!isRoom"></windows-list>
-      <rooms-list v-if="isRoom"></rooms-list>
+      <main-navigation @changeList="changeContent"></main-navigation>
+      <windows-list v-if="id === 'Windows'"></windows-list>
+      <rooms-list v-if="id === 'Rooms'"></rooms-list>
     </section>
   </div>
 </template>
@@ -27,7 +27,12 @@ export default {
   data: function() {
     return {
       title: 'My App Title',
-      isRoom: false
+      id: 'Windows'
+    }
+  },
+  methods: {
+    changeContent(value) {
+      this.id = value;
     }
   }
 }

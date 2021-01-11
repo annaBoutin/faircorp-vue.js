@@ -1,10 +1,10 @@
 <template>
-  <div class="window border border-secondary rounded p-2 mb-2" :class="{expanded: isExpanded}">
+  <div class="room border border-secondary rounded p-2 mb-2" :class="{expanded: isExpanded}">
     <div class="top-row d-flex" @click="toggleExpand">
-      <div class="window-name fw-bold pe-3">{{room.name}}</div>
-      <div class="text-muted">{{room.floor}}</div>
-      <div>{{room.currentTemp}}</div>
-      <div>{{room.targetTemp}}</div>
+      <div class="room-name fw-bold pe-3">{{room.name}}</div>
+      <div class="room-floor text-muted">Floor : {{room.floor}}</div>
+      <div class="room-currentTemp text-muted">{{room.currentTemp}}</div>
+      <div class="room-targetTemp text-muted">{{room.targetTemp}}</div>
 
       <div class="expand-button ms-auto">
         {{ isExpanded ? '&#9660;' : '&#9658;' }}
@@ -13,7 +13,7 @@
     <template v-if="isExpanded">
       <hr/>
       <div class="details d-flex">
-        <button type="button" class="btn btn-danger disabled">Delete window</button>
+        <button type="button" class="btn btn-danger" @click="deleteRoom">Delete window</button>
       </div>
     </template>
   </div>
@@ -32,11 +32,16 @@ export default {
     }
   },
   computed: {
-  
+
   },
   methods: {
     toggleExpand() {
       this.isExpanded = !this.isExpanded;
+    },
+    async deleteRoom() {
+      let response = await axios.delete(`${API_HOST}/api/rooms/${this.room.id}`);
+      let roomId = this.room.id;
+      this.$emit('deleted-rooms',roomId);
     }
   }
 }
@@ -62,7 +67,7 @@ export default {
   }
 }
 
-.window {
+.room {
   .top-row {
     cursor: pointer;
   }

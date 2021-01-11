@@ -1,10 +1,10 @@
 <template>
-  <div class="windows-list pt-3">
+  <div class="rooms-list pt-3">
     <rooms-list-item
       v-for="room in rooms"
       :room="room"
       :key="room.id"
-      @room-updated="updateRoom"
+      @deleted-room="deleteRoom"
     >
     </rooms-list-item>
   </div>
@@ -33,10 +33,10 @@ export default {
     this.rooms = rooms;
   },
   methods: {
-    updateRoom(newRoom) {
-      /* Find the place of room objectw ith the same Id in the array, and replace it */
-      let index = this.rooms.findIndex(room => room.id === newRoom.id);
-      this.rooms.splice(index, 1, newRoom);
+    deleteRoom(roomId) {
+      /* Delete the room of the id roomId in the array rooms */
+      let index = this.rooms.findIndex(room => room.id === roomId);
+      this.rooms.splice(index,1);
     }
   }
 }
