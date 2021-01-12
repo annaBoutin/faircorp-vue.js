@@ -13,7 +13,7 @@
     <template v-if="isExpanded">
       <hr/>
       <div class="details d-flex">
-        <button type="button" class="btn btn-danger" @click="deleteRoom">Delete window</button>
+        <button type="button" class="btn btn-danger" @click="deleteRoom">Delete room</button>
       </div>
     </template>
   </div>
