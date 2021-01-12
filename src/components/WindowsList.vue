@@ -4,24 +4,23 @@
         <div class="row">
            <div class="col">
              <label for="windowName">Name : </label>
-		     <input id="windowName" v-model="windowName" type="Text" name="windowName" required>
-	       </div>
-		
-			<div class="col">
-			 <label for="roomId">RoomID : </label>
-			 <input id="roomId" v-model="roomId" type="Text" name="roomId" required>
-			</div>
-		 <br>
-		</div>
-   
-	  <p>
-        <input type="submit" class="btn btn-primary" value="Create">
-      </p>
+		         <input id="windowName" v-model="windowName" type="Text" name="windowName" required>
+	         </div>
+
+			     <div class="col">
+			        <label for="roomId">RoomID : </label>
+			        <input id="roomId" v-model="roomId" type="Text" name="roomId" required>
+			     </div>
+	      </div>
+        <br>
+	      <p>
+          <input type="submit" class="btn btn-primary" value="Create">
+        </p>
      </form>
-    <windows-list-item 
+    <windows-list-item
       v-for="window in windows"
       :window="window"
-      :key="window.id"  
+      :key="window.id"
 	  @window-updated="updateWindow"
 	  @deleted-window="deleteWindow"
     >
@@ -47,7 +46,7 @@ export default {
 	  windowName: null,
 	  roomName: null,
 	  roomId: null
-	  
+
     }
   },
   created: async function() {
@@ -61,7 +60,7 @@ export default {
       let index = this.windows.findIndex(window => window.id === newWindow.id);
       this.windows.splice(index, 1, newWindow);
     },
-	deleteWindow(roomId) {
+	deleteWindow(windowId) {
       /* Delete the window of the id windowId in the array windows */
       let index = this.windows.findIndex(window => window.id === windowId);
       this.windows.splice(index,1);
@@ -86,4 +85,3 @@ export default {
 }
 
 </style>
-

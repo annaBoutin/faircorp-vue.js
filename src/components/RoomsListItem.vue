@@ -4,7 +4,8 @@
       <div class="room-name fw-bold pe-3">{{room.name}}</div>
       <div class="room-floor text-muted pe-3">Floor : {{room.floor}}</div>
       <div class="room-currentTemp text-muted pe-3" v-if="room.currentTemp !== null">Current temperature : {{room.currentTemp}}</div>
-      <div class="room-targetTemp text-muted" v-if="room.targetTemp !== null">Target Temperature : {{room.targetTemp}}</div>
+      <div class="room-targetTemp text-muted pe-3" v-if="room.targetTemp !== null">Target Temperature : {{room.targetTemp}}</div>
+      <div class="text-muted">Id : {{room.id}} </div>
 
       <div class="expand-button ms-auto">
         {{ isExpanded ? '&#9660;' : '&#9658;' }}
