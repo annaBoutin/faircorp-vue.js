@@ -2,7 +2,8 @@
   <div class="window border border-secondary rounded p-2 mb-2" :class="{expanded: isExpanded}">
     <div class="top-row d-flex" @click="toggleExpand">
       <div class="window-name fw-bold pe-3">{{window.name}}</div>
-      <div class="room-name text-muted">{{window.roomName}}</div>
+      <div class="room-name text-muted" pe-3>{{window.roomName}}</div>
+	  
 
       <div class="open-status ms-4" :class="{open: isWindowOpen, closed: !isWindowOpen}">
         <template v-if="isWindowOpen">
@@ -21,7 +22,7 @@
       <hr/>
       <div class="details d-flex">
         <button type="button" class="btn btn-secondary me-2" @click="switchWindow">{{ isWindowOpen ? 'Close' : 'Open' }} window</button>
-        <button type="button" class="btn btn-danger disabled">Delete window</button>
+        <button type="button" class="btn btn-danger" @click="deleteWindow">Delete window</button>
       </div>
     </template>
   </div>
@@ -52,6 +53,11 @@ export default {
       let response = await axios.put(`${API_HOST}/api/windows/${this.window.id}/switch`);
       let updatedWindow = response.data;
       this.$emit('window-updated', updatedWindow);
+    },
+	async deleteWindow() {
+      let response = await axios.delete(`${API_HOST}/api/windows/${this.window.id}`);
+      let windowId = this.window.id;
+      this.$emit('deleted-windows',windowId);
     }
   }
 }
